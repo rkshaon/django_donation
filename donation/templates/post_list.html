@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}
+  {{title}}
+{% endblock %}
+{% block content %}
+<div class="centerstage">
+  {% if donate %}
+    <a href="#" class="btn btn-primary">Donate</a>
+  {% endif %}
+  {% for post in post_list %}
+  <div class="post">
+    <h2><a href="{% url 'post' pk=post.id %}">{{ post.title }}</a></h2>
+    <div>
+      <h4>Posted by <a href="{% url 'organization' pk=post.author.id %}"><i>{{ post.author }}</i></a></h4>
+      <h4>Date: {{ post.date }}</h4>
+    </div>
+    <!-- <img src="{{ post.image.url }}" alt="{{ post.title }}" width="500px"> -->
+    <p>{{ post.description | slice:"0:250" }}</p>
+    <a class="btn btn-primary" href="{% url 'post' pk=post.id %}" >Details</a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

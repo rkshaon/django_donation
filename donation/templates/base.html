@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&family=Russo+One&display=swap" rel="stylesheet">
+  </head>
+  <body class="loader">
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{% url 'index' %}">Donation Center</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="{% url 'index' %}">Home</a></li>
+          <li><a target="" href="{% url 'about' %}" class="">About</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
+          <li><a>Welcome, {{ user.username }}</a></li>
+          <li><a href="" class="">New Post</a></li>
+          <li><a href="{% url 'my_posts' %}" class="">Posts</a></li>
+          <li><a href="{% url 'logout' %}" class=""><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+          {% else %}
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <!-- Content Block -->
+    <div class="content container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="blog_posts">
+            {% block content %}
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- footer -->
+    <footer class="container-fluid">
+      <div class="footer navbar-fixed-bottom" style="background-color: #222222; color: #fff; padding-top: 10px;">
+        <p class="text-center">&copy; 2021</p>
+      </div>
+    </footer>
+  </body>
+</html>

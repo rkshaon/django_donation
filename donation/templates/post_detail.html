@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+  <h1 class="posttitle loader">{{ post.title }}</h1>
+  <div>
+    <h4>Posted by <a href="{% url 'organization' pk=post.author.id %}"><i>{{ post.author }}</i></a></h4>
+    <h4>Date: {{ post.date }}</h4>
+    <img src="{{ post.image.url }}" alt="{{ post.title }}" width="500px">
+    <p>{{ post.description }}</p>
+  </div>
+</div>
+{% endblock %}
