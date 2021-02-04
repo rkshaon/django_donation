@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 import requests
 from donation_site.forms import CreateUserForm
 from donation_site.models import Post
@@ -9,14 +10,14 @@ from donation_site.models import Post
 def index(request):
     posts = Post.objects.all().order_by('-id')
     context = {
-        'title': 'Posts | Donation Center',
+        'title': 'Home | Donation Center',
         'post_list': posts,
     }
     template = loader.get_template('post_list.html')
     return HttpResponse(template.render(context, request))
 
 def about(request):
-    context = {'title': 'Home | Donation Center'}
+    context = {'title': 'About | Donation Center'}
     template = loader.get_template('about.html')
     return HttpResponse(template.render(context, request))
 
@@ -44,7 +45,7 @@ def post(request, pk):
     post = Post.objects.get(id=pk)
     donate = False
     context = {
-        'title': 'Posts | Donation Center',
+        'title': 'Post | Donation Center',
         'post': post,
         'donate': donate,
     }
@@ -70,6 +71,16 @@ def registration_page(request):
     return HttpResponse(template.render(context, request))
 
 def login_page(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+
     context = {
         'title': 'Login | Donation Center',
     }
