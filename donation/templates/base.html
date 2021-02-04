@@ -29,7 +29,7 @@
         <ul class="nav navbar-nav navbar-right">
           {% if user.is_authenticated %}
           <li><a>Welcome, {{ user.username }}</a></li>
-          <li><a href="" class="">New Post</a></li>
+          <li><a href="{% url 'create_post' %}" class="">New Post</a></li>
           <li><a href="{% url 'my_posts' %}" class="">Posts</a></li>
           <li><a href="{% url 'logout_page' %}" class=""><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
           {% else %}
