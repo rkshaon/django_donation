@@ -76,23 +76,26 @@ def registration_page(request):
     return HttpResponse(template.render(context, request))
 
 def login_page(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+    if request.user.is_authenticated:
+        return redirect('index')
+    else:
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
 
-        user = authenticate(request, username=username, password=password)
+            user = authenticate(request, username=username, password=password)
 
-        if user is not None:
-            login(request, user)
-            return redirect('index')
-        else:
-            messages.info(request, "Username OR Password is incorrect!")
+            if user is not None:
+                login(request, user)
+                return redirect('index')
+            else:
+                messages.info(request, "Username OR Password is incorrect!")
 
-    context = {
-        'title': 'Login | Donation Center',
-    }
-    template = loader.get_template('login.html')
-    return HttpResponse(template.render(context, request))
+        context = {
+            'title': 'Login | Donation Center',
+        }
+        template = loader.get_template('login.html')
+        return HttpResponse(template.render(context, request))
 
 def logout_page(request):
     logout(request)
