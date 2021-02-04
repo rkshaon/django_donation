@@ -7,15 +7,16 @@
     <!-- Bootstrap -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&family=Russo+One&display=swap" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
-  <body class="loader">
+  <body class="">
     <!-- Nav Bar -->
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
@@ -23,7 +24,7 @@
           <a class="navbar-brand" href="{% url 'index' %}">Donation Center</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="{% url 'index' %}">Home</a></li>
+          <li class=""><a href="{% url 'index' %}">Home</a></li>
           <li><a target="" href="{% url 'about' %}" class="">About</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -51,9 +52,13 @@
       </div>
     </div>
     <!-- footer -->
-    <footer class="container-fluid">
-      <div class="footer navbar-fixed-bottom" style="background-color: #222222; color: #fff; padding-top: 10px;">
-        <p class="text-center">&copy; 2021</p>
+    <footer class="footer-bottom" style="margin-top: 10px;">
+      <div class="container-fluid" style="background-color: #222222; color: #fff;">
+        <div class="row">
+          <div class="col">
+            <p class="text-center copyright" style="margin-top: 10px;">&copy; 2021</p>
+          </div>
+        </div>
       </div>
     </footer>
   </body>
