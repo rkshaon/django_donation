@@ -1,18 +1,36 @@
-{% extends 'blog/base.html' %}
+{% extends 'base.html' %}
+{% block title %}
+  {{ title }}
+{% endblock %}
 
 {% block content %}
 <div class="jumbotron">
-  <h2>Please Login:</h2>
-  <h3>(Must be SuperUser, please check with the site admin)</h3>
+  <h2>Login</h2>
   {% if form.errors %}
   <p>Your username or password didn't match!</p>
   <p>Please try again</p>
   {% endif %}
-  <form class="" action="{% url 'login' %}" method="POST">
+  <form class="" action="{% url 'login_page' %}" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" name="" class="bt btn-primary" value="Login">
+    <!-- {{ form.as_p }} -->
+    <div class="form-group">
+      <label for="exampleInputEmail1">Username</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
     <input type="hidden" name="next" value="{{ next }}">
   </form>
+  <div class="">
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  </div>
+  <div class="">
+    <p>Don't have an account? <a href="{% url 'registration_page' %}">Register</a></p>
+  </div>
 </div>
 {% endblock %}

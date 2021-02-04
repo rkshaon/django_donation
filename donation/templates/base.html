@@ -33,8 +33,8 @@
           <li><a href="{% url 'my_posts' %}" class="">Posts</a></li>
           <li><a href="{% url 'logout' %}" class=""><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
           {% else %}
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li><a href="{% url 'registration_page' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="{% url 'login_page' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           {% endif %}
         </ul>
       </div>

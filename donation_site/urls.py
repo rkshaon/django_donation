@@ -7,4 +7,6 @@ urlpatterns = [
     path('my_posts/', views.my_posts, name='my_posts'),
     re_path(r'^organization/(?P<pk>\d+)$', views.organization, name='organization'),
     re_path(r'^post/(?P<pk>\d+)$', views.post, name='post'),
+    path('login/', views.login_page, name='login_page'),
+    path('registration/', views.registration_page, name='registration_page'),
 ]
