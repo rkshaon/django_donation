@@ -6,12 +6,6 @@
 {% block content %}
 <div class="jumbotron">
   <h2>Login</h2>
-  {% if form.errors %}
-  <p>Your username or password didn't match!</p>
-  <p>Please try again</p>
-  {% else %}
-  <p>Matched</p>
-  {% endif %}
   <form class="" action="{% url 'login_page' %}" method="POST">
     {% csrf_token %}
     <div class="form-group">
