@@ -59,9 +59,7 @@ def create_post(request):
         form = CreatePostForm(request.POST, request.FILES)
         if form.is_valid:
             form.save()
-        #     return redirect('my_posts')
-        # form.save()
-        print(request.POST)
+            return redirect('my_posts')
     else:
         pass
     form = CreatePostForm()

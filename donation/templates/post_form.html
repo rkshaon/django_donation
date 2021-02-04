@@ -7,7 +7,7 @@
   <form class="" method="POST" action="{% url 'create_post' %}" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="text" name="author" value="{{user.id}}">
+    <input type="hidden" name="author" value="{{user.id}}">
     <button type="submit" class="btn btn-primary">Save</button>
   </form>
 {% endblock %}
