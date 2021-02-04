@@ -5,7 +5,7 @@
 {% block content %}
 <div class="centerstage">
   {% if donate %}
-    <a href="#" class="btn btn-primary">Donate</a>
+    <a href="{% url 'donation_page' %}" class="btn btn-primary">Donate</a>
   {% endif %}
   {% for post in post_list %}
   <div class="post">

@@ -54,6 +54,7 @@ def post(request, pk):
     template = loader.get_template('post_detail.html')
     return HttpResponse(template.render(context, request))
 
+@login_required(login_url='login_page')
 def create_post(request):
     if request.method == 'POST':
         form = CreatePostForm(request.POST, request.FILES)
@@ -116,3 +117,10 @@ def login_page(request):
 def logout_page(request):
     logout(request)
     return redirect('login_page')
+
+def donation_page(request):
+    context = {
+        'title': 'Donate | Donation Center',
+    }
+    template = loader.get_template('donate.html')
+    return HttpResponse(template.render(context, request))
