@@ -25,7 +25,10 @@
         </div>
         <ul class="nav navbar-nav">
           <li class=""><a href="{% url 'index' %}">Home</a></li>
-          <li><a target="" href="{% url 'about' %}" class="">About</a></li>
+          <li><a href="{% url 'about' %}" class="">About</a></li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class=""><a href="javascript:void(0);">Total Donation: {{ total_donation.amount__sum }} BDT</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           {% if user.is_authenticated %}
