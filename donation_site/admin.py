@@ -1,5 +1,5 @@
 from django.contrib import admin
-from donation_site.models import Post
+from donation_site.models import Post, Donation
 
-# Register your models here.
 admin.site.register(Post)
+admin.site.register(Donation)

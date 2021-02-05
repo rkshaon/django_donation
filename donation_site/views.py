@@ -4,8 +4,9 @@ from django.template import loader
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 import requests
-from donation_site.forms import CreateUserForm, CreatePostForm
+from donation_site.forms import CreateUserForm, CreatePostForm, CreateDonationForm
 from donation_site.models import Post
 
 def index(request):
@@ -34,11 +35,13 @@ def my_posts(request):
 
 def organization(request, pk):
     posts = Post.objects.filter(author=pk).order_by('-id')
+    author = pk
     donate = True
     context = {
         'title': 'Posts | Donation Center',
         'post_list': posts,
         'donate': donate,
+        'author': author,
     }
     template = loader.get_template('post_list.html')
     return HttpResponse(template.render(context, request))
@@ -118,9 +121,27 @@ def logout_page(request):
     logout(request)
     return redirect('login_page')
 
-def donation_page(request):
+def donation_page(request, pk):
+    author = User.objects.get(id=pk)
+    form = CreateDonationForm()
+    # if request.method == 'POST':
+    #     form = CreatePostForm(request.POST, request.FILES)
+    #     if form.is_valid:
+    #         form.save()
+    #         return redirect('my_posts')
+    if request.method == 'POST':
+        print('Post data: ', request.POST)
+        form = CreateDonationForm(request.POST)
+        if form.is_valid:
+            print('validated')
+            form.save()
+        #     return redirect('index')
+        else:
+            print('validation failed')
     context = {
         'title': 'Donate | Donation Center',
+        'author': author,
+        'form': form,
     }
     template = loader.get_template('donate.html')
     return HttpResponse(template.render(context, request))
