@@ -8,7 +8,7 @@
     <a href="{% url 'donation_page' pk=author %}" class="btn btn-primary">Donate</a>
   {% endif %}
   {% for post in post_list %}
-  <div class="post">
+  <div class="post" style="padding-bottom: 40px;">
     <h2><a href="{% url 'post' pk=post.id %}">{{ post.title }}</a></h2>
     <div>
       <h4>Posted by <a href="{% url 'organization' pk=post.author.id %}"><i>{{ post.author }}</i></a></h4>
