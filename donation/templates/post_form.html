@@ -3,11 +3,16 @@
   {{ title }}
 {% endblock %}
 {% block content %}
-  <h1>New Post</h1>
+<div class="col-lg-8">
+  <!-- Title -->
+  <h1 class="mt-4">New Post</h1>
+  <!-- Author -->
   <form class="" method="POST" action="{% url 'create_post' %}" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="hidden" name="author" value="{{user.id}}">
     <button type="submit" class="btn btn-primary">Save</button>
   </form>
+  <hr>
+</div>
 {% endblock %}
