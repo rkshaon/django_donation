@@ -3,21 +3,34 @@
   {{title}}
 {% endblock %}
 {% block content %}
-<div class="centerstage">
-  {% if donate %}
-    <a href="{% url 'donation_page' pk=author %}" class="btn btn-primary">Donate</a>
-  {% endif %}
+
+<div class="col-md-8">
+  <h1 class="my-4">Page Heading
+    <small>Secondary Text</small>
+  </h1>
   {% for post in post_list %}
-  <div class="post" style="padding-bottom: 40px;">
-    <h2><a href="{% url 'post' pk=post.id %}">{{ post.title }}</a></h2>
-    <div>
-      <h4>Posted by <a href="{% url 'organization' pk=post.author.id %}"><i>{{ post.author }}</i></a></h4>
-      <h4>Date: {{ post.date }}</h4>
-      <img src="{{ post.image.url }}" alt="{{ post.title }}" width="500px">
+  <!-- Blog Post -->
+  <div class="card mb-4">
+    <img class="card-img-top" src="{{ post.image.url }}" alt="{{ post.title }}">
+    <div class="card-body">
+      <h2 class="card-title">{{ post.title }}</h2>
+      <p class="card-text">{{ post.description | slice:"0:190" }}</p>
+      <a href="{% url 'post' pk=post.id %}" class="btn btn-primary">Read More &rarr;</a>
     </div>
-    <p>{{ post.description | slice:"0:250" }}</p>
-    <a class="btn btn-primary" href="{% url 'post' pk=post.id %}" >Details</a>
+    <div class="card-footer text-muted">
+      Posted on {{ post.date }} by
+      <a href="{% url 'organization' pk=post.author.id %}">{{ post.author }}</a>
+    </div>
   </div>
   {% endfor %}
+  <!-- Pagination -->
+  <!-- <ul class="pagination justify-content-center mb-4">
+    <li class="page-item">
+      <a class="page-link" href="#">&larr; Older</a>
+    </li>
+    <li class="page-item disabled">
+      <a class="page-link" href="#">Newer &rarr;</a>
+    </li>
+  </ul> -->
 </div>
 {% endblock %}

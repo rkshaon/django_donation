@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-<div>
-  <h1 class="posttitle loader">{{ post.title }}</h1>
-  <div>
-    <h4>Posted by <a href="{% url 'organization' pk=post.author.id %}"><i>{{ post.author }}</i></a></h4>
-    <h4>Date: {{ post.date }}</h4>
-    {% if post.image %}
-      <img src="{{ post.image.url }}" alt="{{ post.title }}" width="500px">
-    {% endif %}
-    <p>{{ post.description }}</p>
-  </div>
+<!-- Post Content Column -->
+<div class="col-lg-8">
+  <!-- Title -->
+  <h1 class="mt-4">{{ post.title }}</h1>
+  <!-- Author -->
+  <p class="lead">by <a href="{% url 'organization' pk=post.author.id %}">{{ post.author }}</a></p>
+  <hr>
+  <!-- Date/Time -->
+  <p>Posted on {{ post.date }}</p>
+  <hr>
+  <!-- Preview Image -->
+  <img class="img-fluid rounded" src="{{ post.image.url }}" alt="">
+  <hr>
+  <!-- Post Content -->
+  <p class="lead">{{ post.description }}</p>
+  <hr>
 </div>
 {% endblock %}
