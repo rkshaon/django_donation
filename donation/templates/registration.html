@@ -3,41 +3,31 @@
   {{ title }}
 {% endblock %}
 {% block content %}
-<div class="jumbotron">
-  <h2 class="">Registration</h2>
+<div class="col-lg-8">
+  <h1 class="mt-4">Registration</h1>
   <form class="" action="{% url 'registration_page' %}" method="POST">
     {% csrf_token %}
     <div class="form-group">
       <label for="exampleInputEmail1">{{ form.username.label }}</label>
       {{ form.username }}
-      <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> -->
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">{{ form.email.label }}</label>
       {{ form.email }}
-      <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> -->
       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">{{ form.password1.label }}</label>
       {{ form.password1 }}
-      <!-- <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> -->
     </div>
     <div class="form-group">
-      <label for="exampleInputPassword1">{{ form.password2.label }}</label>
+      <label for="exampleInputPassword2">{{ form.password2.label }}</label>
       {{ form.password2 }}
-      <!-- <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> -->
     </div>
-    <!-- rendering form through loop -->
-    <!-- {% for field in form %}
-      {{ field.label}}
-      {{ field }}
-    {% endfor %} -->
-    <!-- rendering form -->
-    <!-- {{ form.as_p }} -->
     <button type="submit" class="btn btn-primary">Register</button>
     <input type="hidden" name="next" value="{{ next }}">
   </form>
+  <hr>
   <div class="">
     {{ form.errors }}
   </div>

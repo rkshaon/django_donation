@@ -10,10 +10,10 @@ class CreateUserForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
         widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.TextInput(attrs={'class': 'form-control'}),
-            'password1': forms.TextInput(attrs={'class': 'form-control'}),
-            'password2': forms.TextInput(attrs={'class': 'form-control'}),
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your username'}),
+            'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'}),
+            'password1': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter your password', 'id': 'exampleInputPassword1', 'type': 'password'}),
+            'password2': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Re-enter your password', 'id': 'exampleInputPassword2', 'type': 'password'}),
         }
 
 class CreatePostForm(forms.ModelForm):

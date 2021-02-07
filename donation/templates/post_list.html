@@ -4,8 +4,12 @@
 {% endblock %}
 {% block content %}
 <div class="col-md-8">
-  <h1 class="my-4">Page Heading
-    <small>Secondary Text</small>
+  <h1 class="my-4">Activies Post
+    {% if author %}
+    <small>{{ author }}</small>
+    {% else %}
+    <small>all organizations</small>
+    {% endif %}
   </h1>
   {% for post in post_list %}
   <!-- Blog Post -->

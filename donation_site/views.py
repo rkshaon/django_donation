@@ -42,7 +42,7 @@ def my_posts(request):
 def organization(request, pk):
     posts = Post.objects.filter(author=pk).order_by('-id')
     total_donation = Donation.objects.aggregate(Sum('amount'))
-    author = pk
+    author = User.objects.get(id=pk)
     donate = True
     context = {
         'title': 'Posts | Donation Center',
