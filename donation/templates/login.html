@@ -2,10 +2,9 @@
 {% block title %}
   {{ title }}
 {% endblock %}
-
 {% block content %}
-<div class="jumbotron">
-  <h2>Login</h2>
+<div class="col-lg-8">
+  <h1 class="mt-4">Log in</h1>
   <form class="" action="{% url 'login_page' %}" method="POST">
     {% csrf_token %}
     <div class="form-group">
@@ -19,13 +18,11 @@
     <button type="submit" class="btn btn-primary">Login</button>
     <input type="hidden" name="next" value="{{ next }}">
   </form>
+  <hr>
   <div class="">
     {% for message in messages %}
       <p>{{ message }}</p>
     {% endfor %}
-  </div>
-  <div class="">
-    <p>Don't have an account? <a href="{% url 'registration_page' %}">Register</a></p>
   </div>
 </div>
 {% endblock %}

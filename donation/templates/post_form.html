@@ -4,9 +4,7 @@
 {% endblock %}
 {% block content %}
 <div class="col-lg-8">
-  <!-- Title -->
   <h1 class="mt-4">New Post</h1>
-  <!-- Author -->
   <form class="" method="POST" action="{% url 'create_post' %}" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
