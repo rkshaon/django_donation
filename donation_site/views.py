@@ -141,18 +141,13 @@ def donation_page(request, pk):
     author = User.objects.get(id=pk)
     total_donation = Donation.objects.aggregate(Sum('amount'))
     form = CreateDonationForm()
-    # if request.method == 'POST':
-    #     form = CreatePostForm(request.POST, request.FILES)
-    #     if form.is_valid:
-    #         form.save()
-    #         return redirect('my_posts')
     if request.method == 'POST':
         print('Post data: ', request.POST)
         form = CreateDonationForm(request.POST)
         if form.is_valid:
             print('validated')
             form.save()
-            return redirect('index')
+            return redirect('donation_list')
         else:
             print('validation failed')
     context = {
@@ -162,4 +157,17 @@ def donation_page(request, pk):
         'total_donation': total_donation,
     }
     template = loader.get_template('donate.html')
+    return HttpResponse(template.render(context, request))
+
+def donation_list(request):
+    donations = Donation.objects.all().order_by('-id')
+    total_donation = Donation.objects.aggregate(Sum('amount'))
+    donate = False
+    context = {
+        'title': 'Donation | Donation Center',
+        'donations': donations,
+        'donate': donate,
+        'total_donation': total_donation,
+    }
+    template = loader.get_template('donation_list.html')
     return HttpResponse(template.render(context, request))

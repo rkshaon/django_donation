@@ -9,6 +9,7 @@ urlpatterns = [
     re_path(r'^post/(?P<pk>\d+)$', views.post, name='post'),
     path('new_post/', views.create_post, name='create_post'),
     re_path(r'^donate/(?P<pk>\d+)$', views.donation_page, name='donation_page'),
+    path('donations/', views.donation_list, name='donation_list'),
     path('login/', views.login_page, name='login_page'),
     path('logout/', views.logout_page, name='logout_page'),
     path('registration/', views.registration_page, name='registration_page'),

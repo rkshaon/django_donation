@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+  {{title}}
+{% endblock %}
+{% block content %}
+<div class="col-md-8">
+  <h1 class="my-4">Donation List</h1>
+  {% for donation in donations %}
+  <!-- Blog Post -->
+  <!-- {{ donation }} -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h2 class="card-title">{{ donation.name }}</h2>
+      <p class="card-text">{{ donation.amount }}</p>
+    </div>
+    <div class="card-footer text-muted">
+      {{ donation.message }}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

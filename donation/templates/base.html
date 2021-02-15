@@ -25,6 +25,7 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active"><a class="nav-link" href="{% url 'index' %}">Home<span class="sr-only">(current)</span></a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'donation_list' %}">Donations</a></li>
           {% if user.is_authenticated %}
           <li class="nav-item"><a class="nav-link">Welcome, {{ user.username }}</a></li>
           <li class="nav-item"><a href="{% url 'create_post' %}" class="nav-link">New Post</a></li>
