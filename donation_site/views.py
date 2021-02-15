@@ -137,6 +137,7 @@ def logout_page(request):
     logout(request)
     return redirect('login_page')
 
+@login_required(login_url='login_page')
 def donation_page(request, pk):
     author = User.objects.get(id=pk)
     total_donation = Donation.objects.aggregate(Sum('amount'))
