@@ -8,6 +8,7 @@ class CreateUserForm(UserCreationForm):
     """defining the CreateUserForm."""
     class Meta:
         model = User
+        # fields = '__all__'
         fields = ['username', 'email', 'password1', 'password2']
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your username'}),

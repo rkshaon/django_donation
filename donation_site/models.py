@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 # from django.utils.timezone.now import timezone
 # from django.core.urlresolver import reverse
 # from django.urls import reverse
