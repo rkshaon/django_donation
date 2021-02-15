@@ -3,7 +3,7 @@
   {{title}}
 {% endblock %}
 {% block content %}
-<div class="col-md-8">
+<div class="col-md-8" style="margin-bottom: 100px !important;">
   <h1 class="my-4">Activies Post
     {% if author %}
     <small>{{ author }}</small>
@@ -15,7 +15,7 @@
   </h1>
   {% for post in post_list %}
   <!-- Blog Post -->
-  <div class="card mb-4">
+  <div class="card mb-4" style="">
     <img class="card-img-top" src="{{ post.image.url }}" alt="{{ post.title }}">
     <div class="card-body">
       <h2 class="card-title">{{ post.title }}</h2>

@@ -3,7 +3,7 @@
   {{ title }}
 {% endblock %}
 {% block content %}
-<div class="col-lg-8">
+<div class="col-lg-8" style="margin-bottom: 100px;">
   <h1 class="mt-4">New Post</h1>
   <form class="" method="POST" action="{% url 'create_post' %}" enctype="multipart/form-data">
     {% csrf_token %}
