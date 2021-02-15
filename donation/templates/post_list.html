@@ -7,6 +7,8 @@
   <h1 class="my-4">Activies Post
     {% if author %}
     <small>{{ author }}</small>
+    <br>
+    <a href="{% url 'donation_page' pk=author.id %}" class="btn btn-primary">Donate</a>
     {% else %}
     <small>all organizations</small>
     {% endif %}
