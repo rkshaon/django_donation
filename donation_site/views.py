@@ -13,17 +13,24 @@ from donation_site.models import Post, Donation
 def index(request):
     posts = Post.objects.all().order_by('-id')
     total_donation = Donation.objects.aggregate(Sum('amount'))
+    page = 'home'
     context = {
         'title': 'Home | Donation Center',
         'post_list': posts,
         'total_donation': total_donation,
+        'page': page,
     }
     template = loader.get_template('post_list.html')
     return HttpResponse(template.render(context, request))
 
 def about(request):
     total_donation = Donation.objects.aggregate(Sum('amount'))
-    context = {'title': 'About | Donation Center', 'total_donation': total_donation,}
+    page = 'about'
+    context = {
+        'title': 'About | Donation Center',
+        'total_donation': total_donation,
+        'page': page,
+    }
     template = loader.get_template('about.html')
     return HttpResponse(template.render(context, request))
 
@@ -31,10 +38,12 @@ def about(request):
 def my_posts(request):
     posts = Post.objects.filter(author=request.user.id).order_by('-id')
     total_donation = Donation.objects.aggregate(Sum('amount'))
+    page = 'my_post'
     context = {
         'title': 'Posts | Donation Center',
         'post_list': posts,
         'total_donation': total_donation,
+        'page': page,
     }
     template = loader.get_template('post_list.html')
     return HttpResponse(template.render(context, request))
@@ -44,12 +53,14 @@ def organization(request, pk):
     total_donation = Donation.objects.aggregate(Sum('amount'))
     author = User.objects.get(id=pk)
     donate = True
+    page = 'organization'
     context = {
         'title': 'Posts | Donation Center',
         'post_list': posts,
         'donate': donate,
         'author': author,
         'total_donation': total_donation,
+        'page': page,
     }
     template = loader.get_template('post_list.html')
     return HttpResponse(template.render(context, request))
@@ -58,11 +69,13 @@ def post(request, pk):
     post = Post.objects.get(id=pk)
     total_donation = Donation.objects.aggregate(Sum('amount'))
     donate = False
+    page = 'post'
     context = {
         'title': 'Post | Donation Center',
         'post': post,
         'donate': donate,
         'total_donation': total_donation,
+        'page': page,
     }
     template = loader.get_template('post_detail.html')
     return HttpResponse(template.render(context, request))
@@ -78,16 +91,19 @@ def create_post(request):
     else:
         pass
     form = CreatePostForm()
+    page = 'new_post'
     context = {
         'title': 'New Post | Donation Center',
         'form': form,
         'total_donation': total_donation,
+        'page': page,
     }
     template = loader.get_template('post_form.html')
     return HttpResponse(template.render(context, request))
 
 def registration_page(request):
     total_donation = Donation.objects.aggregate(Sum('amount'))
+    page = 'registration'
     if request.user.is_authenticated:
         return redirect('index')
     else:
@@ -105,6 +121,7 @@ def registration_page(request):
         'title': 'Registration | Donation Center',
         'form': form,
         'total_donation': total_donation,
+        'page': page,
     }
     template = loader.get_template('registration.html')
     return HttpResponse(template.render(context, request))
@@ -126,9 +143,11 @@ def login_page(request):
             else:
                 messages.info(request, "Username OR Password is incorrect!")
 
+        page = 'login'
         context = {
             'title': 'Login | Donation Center',
             'total_donation': total_donation,
+            'page': page,
         }
         template = loader.get_template('login.html')
         return HttpResponse(template.render(context, request))
@@ -142,6 +161,7 @@ def donation_page(request, pk):
     author = User.objects.get(id=pk)
     total_donation = Donation.objects.aggregate(Sum('amount'))
     form = CreateDonationForm()
+    page = 'new_donation'
     if request.method == 'POST':
         print('Post data: ', request.POST)
         form = CreateDonationForm(request.POST)
@@ -156,6 +176,7 @@ def donation_page(request, pk):
         'author': author,
         'form': form,
         'total_donation': total_donation,
+        'page': page,
     }
     template = loader.get_template('donate.html')
     return HttpResponse(template.render(context, request))
@@ -164,11 +185,13 @@ def donation_list(request):
     donations = Donation.objects.all().order_by('-id')
     total_donation = Donation.objects.aggregate(Sum('amount'))
     donate = False
+    page = 'donation_list'
     context = {
         'title': 'Donation | Donation Center',
         'donations': donations,
         'donate': donate,
         'total_donation': total_donation,
+        'page': page,
     }
     template = loader.get_template('donation_list.html')
     return HttpResponse(template.render(context, request))
