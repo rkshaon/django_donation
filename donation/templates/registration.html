@@ -7,14 +7,6 @@
   <h1 class="mt-4">Registration</h1>
   <form class="" action="{% url 'registration_page' %}" method="POST">
     {% csrf_token %}
-    <!-- {{ form.as_p }} -->
-    <!-- <div class="form-group">
-      <label for="exampleInputEmail1">Type</label>
-      <select class="form-control" name="type">
-        <option value="1">Organization</option>
-        <option value="2">General</option>
-      </select>
-    </div> -->
     <div class="form-group">
       <label for="exampleInputEmail1">{{ form.username.label }}</label>
       {{ form.username }}
@@ -37,7 +29,11 @@
   </form>
   <hr>
   <div class="">
-    {{ form.errors }}
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    {% endif %}
   </div>
   <div class="">
     <p>Already have an account? <a href="{% url 'login_page' %}">Login</a></p>

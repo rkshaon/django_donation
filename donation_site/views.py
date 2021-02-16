@@ -116,6 +116,8 @@ def registration_page(request):
                 user = form.cleaned_data.get('username')
                 messages.success(request, 'Account created for ' + user + '!')
                 return redirect('login_page')
+            else:
+                messages.info(request, "Username OR Password is incorrect!")
 
     context = {
         'title': 'Registration | Donation Center',
